@@ -119,6 +119,7 @@ function handleEditTitle() {
     }
 }
 
+// Save changes button
 function saveTitleChanges() {
     let newText = $('#title-edit-input').val();
     const taskId = $(this).data('id');
@@ -138,6 +139,7 @@ function saveTitleChanges() {
     });
 }
 
+// Cancel changes button
 function cancelTitleChanges() {
     $('#edit-box').empty();
     editTimesCliked = 0;
@@ -157,6 +159,7 @@ function handleEditDescription() {
     }
 }
 
+// Save changes button
 function saveDescriptionChanges() {
     let newText = $('#description-edit-input').val();
     const taskId = $(this).data('id');
@@ -175,7 +178,7 @@ function saveDescriptionChanges() {
         console.log('error: ', error);
     });
 }
-
+// Cancel changes button
 function cancelDescriptionChanges() {
     $('#edit-box').empty();
     editTimesCliked = 0;
