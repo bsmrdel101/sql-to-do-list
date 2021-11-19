@@ -13,6 +13,7 @@ function renderTasks() {
         type: 'GET',
         url: '/tasks'
     }).then((response) => {
+        $('#list').empty();
         console.log('response GET:', response);
         // Append tasks
         for (let task of response) {

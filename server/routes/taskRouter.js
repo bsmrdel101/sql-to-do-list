@@ -35,13 +35,14 @@ router.post('/', (req, res) => {
     const newTask = req.body;
     const sqlText = (`
     INSERT INTO "tasks"
-    ("title", "description")
+    ("title", "description", "status")
     VALUES
-      ($1, $2);
+      ($1, $2, $3);
   `)
   const sqlValues = [
     newTask.title,
     newTask.description,
+    'Incomplete'
   ]
   console.log('SQL:', sqlText)
   pool.query(sqlText, sqlValues)
