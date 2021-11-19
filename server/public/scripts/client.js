@@ -25,8 +25,8 @@ function renderTasks() {
             <tr>
                 <td>${task.title}</td>
                 <td>${task.description}</td>
-                <td>${task.status}</td>
-                <td><button class="toggle-status-btn" data-id="${task.id}" data-status="${task.status}">Toggle Status</button></td>
+                <td><button class="toggle-status-btn" data-id="${task.id}" data-status="${task.status}">${task.status}</button></td>
+                <td><button class="edit-btn" data-id="${task.id}">Edit</button></td>
                 <td><button class="remove-btn" data-id="${task.id}">Remove</button></td>
             </tr>
             `);
