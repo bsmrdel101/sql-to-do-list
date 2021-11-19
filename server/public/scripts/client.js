@@ -63,7 +63,7 @@ function handleRemoveTask() {
         url: `/tasks/${taskId}`
     }).then(function(response) {
         console.log(response);
-        refreshTasks();
+        renderTasks();
     }).catch(function(error){
         console.log('error: ', error);
     });
