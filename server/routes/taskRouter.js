@@ -55,23 +55,24 @@ router.post('/', (req, res) => {
 });
 
 // PUT route, to update status
-console.log('req.params', req.params);
-  const bookId = req.params.id;
-  let currentStatus = req.body;
-  if (currentStatus.currentStatus === 'false') {
-    currentStatus = 'true';
+router.put('/:id', (req, res) => {
+  console.log('req.params', req.params);
+  const taskId = req.params.id;
+  let status = req.body;
+  if (status.status === 'Incomplete') {
+    status = 'Completed';
   } else {
-    currentStatus = 'false';
+    status = 'Incomplete';
   }
   console.log('req.body', req.body);
   const sqlText = `
-    UPDATE "books"
-      SET "isRead"=$1
+    UPDATE "tasks"
+      SET "status"=$1
       WHERE "id"=$2;
   `;
   const sqlValues = [
-    currentStatus,
-    bookId
+    status,
+    taskId
   ];
 
   pool.query(sqlText, sqlValues)
