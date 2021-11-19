@@ -19,16 +19,16 @@ pool.on('connect', () => {
 
 
 // GET route
-// router.get('/', (req, res) => {
-//   const sqlText = 'SELECT * FROM artist;'
-//   pool.query(sqlText)
-//     .then((dbRes) => {
-//       const artistFromDb = dbRes.rows;
-//       res.send(artistFromDb);
-//     }).catch((dbErr) => {
-//       console.error(dbErr);
-//     });
-// });
+router.get('/', (req, res) => {
+  const sqlText = 'SELECT * FROM tasks;'
+  pool.query(sqlText)
+    .then((dbRes) => {
+      const taskFromDb = dbRes.rows;
+      res.send(taskFromDb);
+    }).catch((dbErr) => {
+      console.error(dbErr);
+    });
+});
 
 // POST route
 // router.post('/', (req, res) => {
