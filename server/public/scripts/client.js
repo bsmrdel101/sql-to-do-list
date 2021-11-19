@@ -12,6 +12,10 @@ function onReady() {
     $('#list').on('click', '.toggle-status-btn', handleStatus);
     // Detect click on task title
     $('#list').on('click', '.task-title', handleEditTitle);
+    // Add save and cancel changes button for editing title
+    $('body').on('click', '#save-title-changes-btn', saveTitleChanges);
+    // $('body').on('click', '#cancel-title-changes-btn', cancelTitleChanges);
+    
     renderTasks();
 }
 
@@ -28,8 +32,8 @@ function renderTasks() {
         for (let task of response) {
             $('#list').append(`
             <tr>
-                <td class="task-title">${task.title}</td>
-                <td class="task-description">${task.description}</td>
+                <td class="task-title" data-id="${task.id}">${task.title}</td>
+                <td class="task-description" data-id="${task.id}">${task.description}</td>
                 <td><button class="toggle-status-btn" data-id="${task.id}" data-status="${task.status}">${task.status}</button></td>
                 <td><button class="remove-btn" data-id="${task.id}">Remove</button></td>
             </tr>
@@ -101,13 +105,17 @@ function handleStatus() {
 function handleEditTitle() {
     editTimesCliked += 1;
     if (editTimesCliked <= 1) {
-        let currentTitle = $(this).text();
+        let titleId = $(this).data('id');
         $('#title-edit-box').append(`
         <label for="title-edit-input">Enter New Title </label><input id="title-edit-input" type="text" placeholder="Enter new title">
-        <button id="save-changes-btn">Save Changes?</button>
-        <button id="cancel-changes-btn">Cancel</button>
+        <button id="save-title-changes-btn" data-id="${titleId}">Save Changes?</button>
+        <button id="cancel-title-changes-btn" data-id="${titleId}">Cancel</button>
         `);
     }
+}
+
+function saveTitleChanges() {
+    
 }
 
 // Allows user to change description of submited task.
