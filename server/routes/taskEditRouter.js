@@ -22,7 +22,7 @@ pool.on('connect', () => {
 router.put('/:id', (req, res) => {
     console.log('req.params', req.params);
     const taskId = req.params.id;
-    const newText = req.body;
+    const newText = req.body.newText;
 
     console.log('req.body', req.body);
     const sqlText = `

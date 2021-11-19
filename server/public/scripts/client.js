@@ -122,7 +122,7 @@ function saveTitleChanges() {
     $.ajax({
         type: 'PUT',
         url: `/taskEdit/${taskId}`,
-        data: newText
+        data: { newText: newText }
     }).then(function(response) {
         console.log(response);
         renderTasks();
