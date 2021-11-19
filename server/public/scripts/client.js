@@ -5,6 +5,8 @@ function onReady() {
     $('#submit-btn').on('click', handleAddTask);
     // Add remove button
     $('#list').on('click', '.remove-btn', handleRemoveTask);
+    // Add edit button
+    $('#list').on('click', '.edit-btn', handleEditTask);
     renderTasks();
 }
 
@@ -49,6 +51,7 @@ function handleAddTask() {
         data: taskData
     }).then((response) => {
         console.log('response POST:', response);
+        // Reload list
         renderTasks();
     }).catch((error) => {
         console.log('error POST:', error);
@@ -61,6 +64,26 @@ function handleRemoveTask() {
     $.ajax({
         type: 'DELETE',
         url: `/tasks/${taskId}`
+    }).then(function(response) {
+        console.log(response);
+        renderTasks();
+    }).catch(function(error){
+        console.log('error: ', error);
+    });
+}
+
+// Allows user to change title and description of submited task.
+    // Sends out a PUT request to update list
+function handleEditTask() {
+    const taskId = $(this).data('id');
+    const status = $(this).data('status');
+
+    console.log('taskId', taskId);
+    console.log('status', status);
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${taskId}`,
+        data: { status: status }
     }).then(function(response) {
         console.log(response);
         renderTasks();

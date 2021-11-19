@@ -55,6 +55,34 @@ router.post('/', (req, res) => {
 });
 
 // PUT route, to update status
+console.log('req.params', req.params);
+  const bookId = req.params.id;
+  let currentStatus = req.body;
+  if (currentStatus.currentStatus === 'false') {
+    currentStatus = 'true';
+  } else {
+    currentStatus = 'false';
+  }
+  console.log('req.body', req.body);
+  const sqlText = `
+    UPDATE "books"
+      SET "isRead"=$1
+      WHERE "id"=$2;
+  `;
+  const sqlValues = [
+    currentStatus,
+    bookId
+  ];
+
+  pool.query(sqlText, sqlValues)
+    .then((dbResult) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.error(dbErr);
+      res.sendStatus(500);
+    })
+});
 
 
 // DELETE route, to remove task
