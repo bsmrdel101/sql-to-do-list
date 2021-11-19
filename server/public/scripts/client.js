@@ -10,6 +10,7 @@ function onReady() {
     $('#list').on('click', '.remove-btn', handleRemoveTask);
     // Add toggle status button
     $('#list').on('click', '.toggle-status-btn', handleStatus);
+
     // Detect click on task title
     $('#list').on('click', '.task-title', handleEditTitle);
     // Detect click on task description
@@ -17,7 +18,9 @@ function onReady() {
     // Add save and cancel changes button for editing title
     $('body').on('click', '#save-title-changes-btn', saveTitleChanges);
     $('body').on('click', '#cancel-title-changes-btn', cancelTitleChanges);
-    
+    // Add save and cancel changes button for editing description
+    $('body').on('click', '#save-description-changes-btn', saveDescriptionChanges);
+    $('body').on('click', '#cancel-description-changes-btn', cancelDescriptionChanges);
     renderTasks();
 }
 
@@ -108,7 +111,7 @@ function handleEditTitle() {
     editTimesCliked += 1;
     if (editTimesCliked <= 1) {
         let taskId = $(this).data('id');
-        $('#title-edit-box').append(`
+        $('#edit-box').append(`
         <label for="title-edit-input">Enter New Title </label><input id="title-edit-input" type="text" placeholder="Enter new title">
         <button id="save-title-changes-btn" data-id="${taskId}">Save Changes?</button>
         <button id="cancel-title-changes-btn" data-id="${taskId}">Cancel</button>
@@ -128,7 +131,7 @@ function saveTitleChanges() {
     }).then(function(response) {
         console.log(response);
         renderTasks();
-        $('#title-edit-box').empty();
+        $('#edit-box').empty();
         editTimesCliked = 0;
     }).catch(function(error){
         console.log('error: ', error);
@@ -136,7 +139,7 @@ function saveTitleChanges() {
 }
 
 function cancelTitleChanges() {
-    $('#title-edit-box').empty();
+    $('#edit-box').empty();
     editTimesCliked = 0;
 }
 
@@ -146,7 +149,7 @@ function handleEditDescription() {
     editTimesCliked += 1;
     if (editTimesCliked <= 1) {
         let taskId = $(this).data('id');
-        $('#description-edit-box').append(`
+        $('#edit-box').append(`
         <label for="description-edit-input">Enter New Description </label><input id="description-edit-input" type="text" placeholder="Enter new description">
         <button id="save-description-changes-btn" data-id="${taskId}">Save Changes?</button>
         <button id="cancel-description-changes-btn" data-id="${taskId}">Cancel</button>
@@ -161,12 +164,12 @@ function saveDescriptionChanges() {
     console.log('taskId', taskId);
     $.ajax({
         type: 'PUT',
-        url: `/taskEdit/${taskId}`,
+        url: `/descEdit/${taskId}`,
         data: { newText: newText }
     }).then(function(response) {
         console.log(response);
         renderTasks();
-        $('#title-edit-box').empty();
+        $('#edit-box').empty();
         editTimesCliked = 0;
     }).catch(function(error){
         console.log('error: ', error);
@@ -174,6 +177,6 @@ function saveDescriptionChanges() {
 }
 
 function cancelDescriptionChanges() {
-    $('#title-edit-box').empty();
+    $('#edit-box').empty();
     editTimesCliked = 0;
 }
