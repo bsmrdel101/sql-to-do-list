@@ -14,7 +14,7 @@ function onReady() {
     $('#list').on('click', '.task-title', handleEditTitle);
     // Add save and cancel changes button for editing title
     $('body').on('click', '#save-title-changes-btn', saveTitleChanges);
-    // $('body').on('click', '#cancel-title-changes-btn', cancelTitleChanges);
+    $('body').on('click', '#cancel-title-changes-btn', cancelTitleChanges);
     
     renderTasks();
 }
@@ -126,9 +126,16 @@ function saveTitleChanges() {
     }).then(function(response) {
         console.log(response);
         renderTasks();
+        $('#title-edit-box').empty();
+        editTimesCliked = 0;
     }).catch(function(error){
         console.log('error: ', error);
     });
+}
+
+function cancelTitleChanges() {
+    $('#title-edit-box').empty();
+    editTimesCliked = 0;
 }
 
 // Allows user to change description of submited task.
