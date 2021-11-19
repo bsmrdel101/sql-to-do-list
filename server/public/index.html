@@ -14,7 +14,25 @@
         <h1>To do List</h1>
     </header>
     <main>
-
+        <section id="inputs">
+            <label for="title">Title </label><input id="title" type="text" placeholder="Task name">
+            <label for="title">Description </label><input id="description" type="text" placeholder="Description (optional)">
+            <div>
+                <button id="submit-btn">Add Task</button>
+            </div>
+        </section>
+        <section>
+            <table>
+                <thead>
+                    <th>Task Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
+                </thead>
+                <tbody id="list"></tbody>
+            </table>
+        </section>
     </main>
     <footer>
 
