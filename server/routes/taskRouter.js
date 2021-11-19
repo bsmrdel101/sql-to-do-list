@@ -31,27 +31,27 @@ router.get('/', (req, res) => {
 });
 
 // POST route
-// router.post('/', (req, res) => {
-//     const newArtist = req.body;
-//     const sqlText = (`
-//     INSERT INTO "artist"
-//     ("name", "birthdate")
-//     VALUES
-//       ($1, $2);
-//   `)
-//   const sqlValues = [
-//     newArtist.name,
-//     newArtist.birthdate,
-//   ]
-//   console.log(sqlText)
-//   pool.query(sqlText, sqlValues)
-//     .then((dbRes) => {
-//       res.sendStatus(201);
-//     })
-//     .catch((dbErr) => {
-//       console.error(dbErr);
-//     })
-// });
+router.post('/', (req, res) => {
+    const newTask = req.body;
+    const sqlText = (`
+    INSERT INTO "tasks"
+    ("title", "description")
+    VALUES
+      ($1, $2);
+  `)
+  const sqlValues = [
+    newTask.title,
+    newTask.description,
+  ]
+  console.log('SQL:', sqlText)
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(201);
+    })
+    .catch((dbErr) => {
+      console.error(dbErr);
+    })
+});
 
 // PUT route, to update status
 

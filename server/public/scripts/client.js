@@ -46,6 +46,7 @@ function handleAddTask() {
         data: taskData
     }).then((response) => {
         console.log('response POST:', response);
+        renderTasks();
     }).catch((error) => {
         console.log('error POST:', error);
     })
