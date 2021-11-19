@@ -100,12 +100,13 @@ function handleStatus() {
     // Sends out a PUT request to update list
 function handleEditTitle() {
     editTimesCliked += 1;
-    if (editTimesCliked < 1) {
+    if (editTimesCliked <= 1) {
         let currentTitle = $(this).text();
         $('#title-edit-box').append(`
         <label for="title-edit-input">Enter New Title </label><input id="title-edit-input" type="text" placeholder="Enter new title">
+        <button id="save-changes-btn">Save Changes?</button>
+        <button id="cancel-changes-btn">Cancel</button>
         `);
-        editTimesCliked = 0;
     }
 }
 
