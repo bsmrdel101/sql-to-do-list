@@ -3,6 +3,8 @@ $(document).ready(onReady);
 function onReady() {
     // Add task button
     $('#submit-btn').on('click', handleAddTask);
+    // Add remove button
+    $('#list').on('click', '.remove-btn', handleRemoveTask);
     renderTasks();
 }
 
@@ -51,4 +53,18 @@ function handleAddTask() {
     }).catch((error) => {
         console.log('error POST:', error);
     })
+}
+
+// Deletes task from DOM and database, using DELETE route.
+function handleRemoveTask() {
+    const taskId = $(this).data('id');
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${taskId}`
+    }).then(function(response) {
+        console.log(response);
+        refreshTasks();
+    }).catch(function(error){
+        console.log('error: ', error);
+    });
 }
