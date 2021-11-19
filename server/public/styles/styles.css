@@ -1,6 +1,12 @@
+/* Other styles */
+body {
+    font-family: Palatino;
+}
 
-
-
+/* Header styles */
+header {
+    text-align: center;
+}
 
 /* List styles */
 table, th, td{
