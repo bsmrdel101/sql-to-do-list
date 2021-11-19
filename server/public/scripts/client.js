@@ -6,7 +6,7 @@ function onReady() {
     // Add remove button
     $('#list').on('click', '.remove-btn', handleRemoveTask);
     // Add edit button
-    $('#list').on('click', '.edit-btn', handleEditTask);
+    $('#list').on('click', '.toggle-status-btn', handleStatus);
     renderTasks();
 }
 
@@ -26,7 +26,7 @@ function renderTasks() {
                 <td>${task.title}</td>
                 <td>${task.description}</td>
                 <td>${task.status}</td>
-                <td><button class="edit-btn" data-id="${task.id}" data-status="${task.status}">Edit</button></td>
+                <td><button class="toggle-status-btn" data-id="${task.id}" data-status="${task.status}">Toggle Status</button></td>
                 <td><button class="remove-btn" data-id="${task.id}">Remove</button></td>
             </tr>
             `);
@@ -72,9 +72,9 @@ function handleRemoveTask() {
     });
 }
 
-// Allows user to change title and description of submited task.
+// Allows user to toggle status between complete and incomplete.
     // Sends out a PUT request to update list
-function handleEditTask() {
+function handleStatus() {
     const taskId = $(this).data('id');
     const status = $(this).data('status');
 
@@ -91,3 +91,6 @@ function handleEditTask() {
         console.log('error: ', error);
     });
 }
+
+// Allows user to change title and description of submited task.
+    // Sends out a PUT request to update list
