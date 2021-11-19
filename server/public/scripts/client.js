@@ -12,6 +12,8 @@ function onReady() {
     $('#list').on('click', '.toggle-status-btn', handleStatus);
     // Detect click on task title
     $('#list').on('click', '.task-title', handleEditTitle);
+    // Detect click on task description
+    $('#list').on('click', '.task-description', handleEditDescription);
     // Add save and cancel changes button for editing title
     $('body').on('click', '#save-title-changes-btn', saveTitleChanges);
     $('body').on('click', '#cancel-title-changes-btn', cancelTitleChanges);
@@ -121,7 +123,7 @@ function saveTitleChanges() {
     console.log('taskId', taskId);
     $.ajax({
         type: 'PUT',
-        url: `/taskEdit/${taskId}`,
+        url: `/titleEdit/${taskId}`,
         data: { newText: newText }
     }).then(function(response) {
         console.log(response);
@@ -140,3 +142,38 @@ function cancelTitleChanges() {
 
 // Allows user to change description of submited task.
     // Sends out a PUT request to update list
+function handleEditDescription() {
+    editTimesCliked += 1;
+    if (editTimesCliked <= 1) {
+        let taskId = $(this).data('id');
+        $('#description-edit-box').append(`
+        <label for="description-edit-input">Enter New Description </label><input id="description-edit-input" type="text" placeholder="Enter new description">
+        <button id="save-description-changes-btn" data-id="${taskId}">Save Changes?</button>
+        <button id="cancel-description-changes-btn" data-id="${taskId}">Cancel</button>
+        `);
+    }
+}
+
+function saveDescriptionChanges() {
+    let newText = $('#description-edit-input').val();
+    const taskId = $(this).data('id');
+
+    console.log('taskId', taskId);
+    $.ajax({
+        type: 'PUT',
+        url: `/taskEdit/${taskId}`,
+        data: { newText: newText }
+    }).then(function(response) {
+        console.log(response);
+        renderTasks();
+        $('#title-edit-box').empty();
+        editTimesCliked = 0;
+    }).catch(function(error){
+        console.log('error: ', error);
+    });
+}
+
+function cancelDescriptionChanges() {
+    $('#title-edit-box').empty();
+    editTimesCliked = 0;
+}
