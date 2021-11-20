@@ -119,6 +119,7 @@ function handleEditTitle() {
         <button id="save-title-changes-btn" data-id="${taskId}">Save Changes?</button>
         <button id="cancel-title-changes-btn" data-id="${taskId}">Cancel</button>
         `);
+        window.scrollTo(300, 500);
     }
 }
 
@@ -160,6 +161,7 @@ function handleEditDescription() {
         <button id="cancel-description-changes-btn" data-id="${taskId}">Cancel</button>
         `);
     }
+    window.scrollTo(300, 500);
 }
 
 // Save changes button
