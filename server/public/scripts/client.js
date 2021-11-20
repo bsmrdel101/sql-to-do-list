@@ -153,39 +153,33 @@ function saveTitleChanges(taskId, name) {
 // Allows user to change description of submited task.
     // Sends out a PUT request to update list
 function handleEditDescription() {
-    editTimesCliked += 1;
-    if (editTimesCliked <= 1) {
-        let taskId = $(this).data('id');
-        $('#edit-box').append(`
-        <label for="description-edit-input">Enter New Description </label><input id="description-edit-input" type="text" placeholder="Enter new description">
-        <button id="save-description-changes-btn" data-id="${taskId}">Save Changes?</button>
-        <button id="cancel-description-changes-btn" data-id="${taskId}">Cancel</button>
-        `);
-    }
-    window.scrollTo(300, 500);
+    const taskId = $(this).data('id');
+    swal({
+        text: 'Enter new description',
+        content: "input",
+        button: {
+            text: "Save Changes",
+            closeModal: false
+        },
+        })
+        .then(name => {
+            swal('Description changed to: ', name);
+            window.scrollTo(300, 500);
+            saveDescriptionChanges(taskId, name);
+        });
 }
 
 // Save changes button
-function saveDescriptionChanges() {
-    let newText = $('#description-edit-input').val();
-    const taskId = $(this).data('id');
-
+function saveDescriptionChanges(taskId, name) {
     console.log('taskId', taskId);
     $.ajax({
         type: 'PUT',
         url: `/descEdit/${taskId}`,
-        data: { newText: newText }
+        data: { newText: name }
     }).then(function(response) {
         console.log(response);
         renderTasks();
-        $('#edit-box').empty();
-        editTimesCliked = 0;
     }).catch(function(error){
         console.log('error: ', error);
     });
-}
-// Cancel changes button
-function cancelDescriptionChanges() {
-    $('#edit-box').empty();
-    editTimesCliked = 0;
 }
