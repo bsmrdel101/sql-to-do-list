@@ -14,8 +14,8 @@
 <body>
     <header>
         <h1>To do List</h1>
-        <h3>- Fill in the boxes bellow to add a task -</h3>
-        <h3>- Click on a title or description to edit -</h3>
+        <h5><em>- Fill in the boxes bellow to add a task -</em></h5>
+        <h5><em>- Click on a title or description to edit -</em></h5>
     </header>
     <main>
         <section>
@@ -32,11 +32,11 @@
             <!-- <label for="title">Title </label><input id="title" type="text" placeholder="Task name">
             <label for="title">Description </label><input id="description" type="text" placeholder="Description (optional)"> -->
             <div>
-                <button id="submit-btn">Add Task</button>
+                <button id="submit-btn" class="glow-btn">Add Task</button>
             </div>
         </section>
-        <section>
-            <table>
+        <section id="table-list">
+            <table class="table table-dark table-striped">
                 <thead>
                     <th>Task Name</th>
                     <th>Description</th>

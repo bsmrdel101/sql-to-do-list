@@ -20,8 +20,7 @@ header {
 }
 
 /* Button styles */
-#submit-btn {
-    width: 220px;
+.glow-btn {
     height: 50px;
     border: none;
     outline: none;
@@ -34,10 +33,14 @@ header {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 20%;
 }
 
-#submit-btn:before {
+#list .glow-btn {
+    width: fit-content;
+}
+
+.glow-btn:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
@@ -54,19 +57,19 @@ header {
     border-radius: 10px;
 }
 
-#submit-btn:active {
+.glow-btn:active {
     color: #000
 }
 
-#submit-btn:active:after {
+.glow-btn:active:after {
     background: transparent;
 }
 
-#submit-btn:hover:before {
+.glow-btn:hover:before {
     opacity: 1;
 }
 
-#submit-btn:after {
+.glow-btn:after {
     z-index: -1;
     content: '';
     position: absolute;
@@ -78,9 +81,14 @@ header {
     border-radius: 10px;
 }
 
-/* List styles */
-table, th, td{
-    border: 1px solid black;
+/* Table styles */
+table {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#table-list {
+    margin: 5vh 15%;
 }
 
 /* Animations */

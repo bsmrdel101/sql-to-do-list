@@ -39,8 +39,8 @@ function renderTasks() {
             <tr>
                 <td class="task-title" data-id="${task.id}">${task.title}</td>
                 <td class="task-description" data-id="${task.id}">${task.description}</td>
-                <td><button class="toggle-status-btn" data-id="${task.id}" data-status="${task.status}">${task.status}</button></td>
-                <td><button class="remove-btn" data-id="${task.id}">Remove</button></td>
+                <td><button class="toggle-status-btn glow-btn" data-id="${task.id}" data-status="${task.status}">${task.status}</button></td>
+                <td><button class="remove-btn glow-btn" data-id="${task.id}">Remove</button></td>
             </tr>
             `);
         }
