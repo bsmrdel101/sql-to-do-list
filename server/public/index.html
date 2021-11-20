@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="bootstrap-v5/js/bootstrap.js"></script>
     <script src="vendors/jquery.js"></script>
     <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="bootstrap-v5/css/bootstrap.css">
     <link rel="stylesheet" href="styles/styles.css">
     <title>To do List</title>
 </head>
@@ -16,9 +18,19 @@
         <h3>- Click on a title or description to edit -</h3>
     </header>
     <main>
-        <section id="inputs">
-            <label for="title">Title </label><input id="title" type="text" placeholder="Task name">
-            <label for="title">Description </label><input id="description" type="text" placeholder="Description (optional)">
+        <section>
+            <div id="inputs">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" class="floatingInput" id="title" placeholder="Task name">
+                    <label for="floatingInput">Title</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" class="floatingInput" id="description" placeholder="Description (optional)">
+                    <label for="floatingInput">Description</label>
+                </div>
+            </div>
+            <!-- <label for="title">Title </label><input id="title" type="text" placeholder="Task name">
+            <label for="title">Description </label><input id="description" type="text" placeholder="Description (optional)"> -->
             <div>
                 <button id="submit-btn">Add Task</button>
             </div>
