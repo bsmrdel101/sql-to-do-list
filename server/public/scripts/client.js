@@ -1,6 +1,5 @@
 let editTimesCliked = 0;
 
-
 $(document).ready(onReady);
 
 function onReady() {
@@ -26,6 +25,9 @@ function onReady() {
 
 // Appends all tasks to the DOM, uses ajax GET request.
 function renderTasks() {
+    // Clear text inputs
+    $('#title').val('');
+    $('#description').val('');
     // Get data from database
     $.ajax({
         type: 'GET',
@@ -39,8 +41,8 @@ function renderTasks() {
             <tr>
                 <td class="task-title" data-id="${task.id}">${task.title}</td>
                 <td class="task-description" data-id="${task.id}">${task.description}</td>
-                <td><button class="toggle-status-btn" data-id="${task.id}" data-status="${task.status}">${task.status}</button></td>
-                <td><button class="remove-btn" data-id="${task.id}">Remove</button></td>
+                <td><button class="toggle-status-btn glow-btn" data-id="${task.id}" data-status="${task.status}">${task.status}</button></td>
+                <td><button class="remove-btn glow-btn" data-id="${task.id}">Remove</button></td>
             </tr>
             `);
         }
@@ -73,15 +75,31 @@ function handleAddTask() {
 
 // Deletes task from DOM and database, using DELETE route.
 function handleRemoveTask() {
-    const taskId = $(this).data('id');
-    $.ajax({
-        type: 'DELETE',
-        url: `/tasks/${taskId}`
-    }).then(function(response) {
-        console.log(response);
-        renderTasks();
-    }).catch(function(error){
-        console.log('error: ', error);
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to see this task again.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+            const taskId = $(this).data('id');
+            $.ajax({
+                type: 'DELETE',
+                url: `/tasks/${taskId}`
+            }).then(function(response) {
+                console.log(response);
+                renderTasks();
+            }).catch(function(error){
+                console.log('error: ', error);
+            });
+          swal("Poof!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your task is safe!");
+        }
     });
 }
 
@@ -116,6 +134,7 @@ function handleEditTitle() {
         <button id="save-title-changes-btn" data-id="${taskId}">Save Changes?</button>
         <button id="cancel-title-changes-btn" data-id="${taskId}">Cancel</button>
         `);
+        window.scrollTo(300, 500);
     }
 }
 
@@ -157,6 +176,7 @@ function handleEditDescription() {
         <button id="cancel-description-changes-btn" data-id="${taskId}">Cancel</button>
         `);
     }
+    window.scrollTo(300, 500);
 }
 
 // Save changes button

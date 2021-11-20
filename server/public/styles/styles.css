@@ -1,8 +1,122 @@
+/* Other styles */
+body {
+    font-family: sans-serif;
+}
+#button-margin {
+    padding-bottom: 5vh;
+}
 
+/* Header styles */
+header {
+    color: white;
+    padding: 40px;
+    margin-bottom: 5vh;
+}
+header div {
+    display: inline-block;
+    padding: 15px;
+}
+#top-styles {
+    text-align: center;
+    background-color: #a4508b;
+    background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
+}
+#page-title {
+    font-size: 5em;
+    transform:rotate(-10deg);
+}
 
+/* Form sytles */
+#inputs {
+    padding: 15px;
+    margin: 15px 35%;
+}
+#inputs:last-child {
+    margin: 15px 60%;
+}
 
+/* Button styles */
+.glow-btn {
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
 
-/* List styles */
-table, th, td{
-    border: 1px solid black;
+#list .glow-btn {
+    width: fit-content;
+}
+
+.glow-btn:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-btn:active {
+    color: #000
+}
+
+.glow-btn:active:after {
+    background: transparent;
+}
+
+.glow-btn:hover:before {
+    opacity: 1;
+}
+
+.glow-btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+/* Table styles */
+table {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#table-list {
+    margin: 5vh 15%;
+}
+#collapseOne {
+    background-color: #474549;
+}
+.table-subtitle {
+    color: white;
+    padding: 5px;
+}
+
+/* Animations */
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
