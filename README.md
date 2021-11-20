@@ -12,14 +12,14 @@ The goal of this project is to provide a small but useful tool for storing daily
 
 ## Screen Shots
 
-![list_01](todo-list-01.png)
-![list_02](todo-list-02.png)
+![list_01](images/todo-list-01.png)
+![list_02](images/todo-list-02.png)
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
-- [Express.js]
-- [Postgres]
+- Express.js
+- Postgres
 
 ## Installation
 
