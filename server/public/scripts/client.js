@@ -1,6 +1,5 @@
 let editTimesCliked = 0;
 
-
 $(document).ready(onReady);
 
 function onReady() {
@@ -76,15 +75,31 @@ function handleAddTask() {
 
 // Deletes task from DOM and database, using DELETE route.
 function handleRemoveTask() {
-    const taskId = $(this).data('id');
-    $.ajax({
-        type: 'DELETE',
-        url: `/tasks/${taskId}`
-    }).then(function(response) {
-        console.log(response);
-        renderTasks();
-    }).catch(function(error){
-        console.log('error: ', error);
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to see this task again.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+            const taskId = $(this).data('id');
+            $.ajax({
+                type: 'DELETE',
+                url: `/tasks/${taskId}`
+            }).then(function(response) {
+                console.log(response);
+                renderTasks();
+            }).catch(function(error){
+                console.log('error: ', error);
+            });
+          swal("Poof!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your task is safe!");
+        }
     });
 }
 
