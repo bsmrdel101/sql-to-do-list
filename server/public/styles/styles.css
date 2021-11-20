@@ -23,6 +23,7 @@ header div {
 }
 #page-title {
     font-size: 5em;
+    transform:rotate(-10deg);
 }
 
 /* Form sytles */
@@ -107,6 +108,10 @@ table {
 }
 #collapseOne {
     background-color: #474549;
+}
+.table-subtitle {
+    color: white;
+    padding: 5px;
 }
 
 /* Animations */

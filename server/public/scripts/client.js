@@ -26,6 +26,9 @@ function onReady() {
 
 // Appends all tasks to the DOM, uses ajax GET request.
 function renderTasks() {
+    // Clear text inputs
+    $('#title').val('');
+    $('#description').val('');
     // Get data from database
     $.ajax({
         type: 'GET',
