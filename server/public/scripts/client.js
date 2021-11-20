@@ -127,14 +127,29 @@ function handleStatus() {
     // Sends out a PUT request to update list
 function handleEditTitle() {
     editTimesCliked += 1;
+    let taskId = $(this).data('id');
     if (editTimesCliked <= 1) {
-        let taskId = $(this).data('id');
-        $('#edit-box').append(`
-        <label for="title-edit-input">Enter New Title </label><input id="title-edit-input" type="text" placeholder="Enter new title">
-        <button id="save-title-changes-btn" data-id="${taskId}">Save Changes?</button>
-        <button id="cancel-title-changes-btn" data-id="${taskId}">Cancel</button>
-        `);
-        window.scrollTo(300, 500);
+        swal({
+            text: 'Enter new title',
+            content: "input",
+            button: {
+              text: "Save Changes",
+              closeModal: false,
+            },
+          })
+          .then(name => {
+              swal('Title changed to: ', name);
+              window.scrollTo(300, 500);
+              editTimesCliked = 0;
+          });
+          
+        // let taskId = $(this).data('id');
+        // $('#edit-box').append(`
+        // <label for="title-edit-input">Enter New Title </label><input id="title-edit-input" type="text" placeholder="Enter new title">
+        // <button id="save-title-changes-btn" data-id="${taskId}">Save Changes?</button>
+        // <button id="cancel-title-changes-btn" data-id="${taskId}">Cancel</button>
+        // `);
+        // window.scrollTo(300, 500);
     }
 }
 
