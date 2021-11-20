@@ -12,39 +12,56 @@
     <title>To do List</title>
 </head>
 <body>
-    <header>
-        <h1>To do List</h1>
-        <h5><em>- Fill in the boxes bellow to add a task -</em></h5>
-        <h5><em>- Click on a title or description to edit -</em></h5>
-    </header>
-    <main>
-        <section>
-            <div id="inputs">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" class="floatingInput" id="title" placeholder="Task name">
-                    <label for="floatingInput">Title</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" class="floatingInput" id="description" placeholder="Description (optional)">
-                    <label for="floatingInput">Description</label>
-                </div>
-            </div>
-            <!-- <label for="title">Title </label><input id="title" type="text" placeholder="Task name">
-            <label for="title">Description </label><input id="description" type="text" placeholder="Description (optional)"> -->
+    <div id="top-styles">
+        <header>
             <div>
-                <button id="submit-btn" class="glow-btn">Add Task</button>
+                <h1>To do List</h1>
+                <h5><em>- Fill in the boxes bellow to add a task -</em></h5>
+                <h5><em>- Click on a title or description to edit -</em></h5>
             </div>
-        </section>
+        </header>
+        <main>
+            <section id="button-margin">
+                <div id="inputs">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" class="floatingInput" id="title" placeholder="Task name">
+                        <label for="floatingInput">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" class="floatingInput" id="description" placeholder="Description (optional)">
+                        <label for="floatingInput">Description</label>
+                    </div>
+                </div>
+                <!-- <label for="title">Title </label><input id="title" type="text" placeholder="Task name">
+                <label for="title">Description </label><input id="description" type="text" placeholder="Description (optional)"> -->
+                <div>
+                    <button id="submit-btn" class="glow-btn">Add Task</button>
+                </div>
+            </section>
+    </div>
         <section id="table-list">
-            <table class="table table-dark table-striped">
-                <thead>
-                    <th>Task Name</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Remove</th>
-                </thead>
-                <tbody id="list"></tbody>
-            </table>
+            <div class="accordion" id="accordion-drop">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      To do List
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <th>Task Name</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Remove</th>
+                            </thead>
+                            <tbody id="list"></tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
         </section>
         <div id="edit-box"></div>
     </main>

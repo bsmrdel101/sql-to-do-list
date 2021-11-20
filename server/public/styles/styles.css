@@ -5,14 +5,27 @@ body {
 
 /* Header styles */
 header {
+    color: white;
+    padding: 40px;
+    margin-bottom: 5vh;
+}
+header div {
+    display: inline-block;
+    background-color: #6a37a0;
+    padding: 15px;
+}
+#top-styles {
     text-align: center;
     background-color: #542489;
-    color: white;
-    padding: 20px;
+}
+#button-margin {
+    padding-bottom: 5vh;
 }
 
 /* Form sytles */
 #inputs {
+    background-color: #6a37a0;
+    padding: 15px;
     margin: 15px 35%;
 }
 #inputs:last-child {
@@ -89,6 +102,9 @@ table {
 }
 #table-list {
     margin: 5vh 15%;
+}
+#collapseOne {
+    background-color: #474549;
 }
 
 /* Animations */
