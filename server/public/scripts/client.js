@@ -1,5 +1,3 @@
-let editTimesCliked = 0;
-
 $(document).ready(onReady);
 
 function onReady() {
@@ -14,12 +12,6 @@ function onReady() {
     $('#list').on('click', '.task-title', handleEditTitle);
     // Detect click on task description
     $('#list').on('click', '.task-description', handleEditDescription);
-    // Add save and cancel changes button for editing title
-    $('body').on('click', '#save-title-changes-btn', saveTitleChanges);
-    $('body').on('click', '#cancel-title-changes-btn', cancelTitleChanges);
-    // Add save and cancel changes button for editing description
-    $('body').on('click', '#save-description-changes-btn', saveDescriptionChanges);
-    $('body').on('click', '#cancel-description-changes-btn', cancelDescriptionChanges);
     renderTasks();
 }
 
@@ -126,80 +118,68 @@ function handleStatus() {
 // Allows user to change title of submited task.
     // Sends out a PUT request to update list
 function handleEditTitle() {
-    editTimesCliked += 1;
-    if (editTimesCliked <= 1) {
-        let taskId = $(this).data('id');
-        $('#edit-box').append(`
-        <label for="title-edit-input">Enter New Title </label><input id="title-edit-input" type="text" placeholder="Enter new title">
-        <button id="save-title-changes-btn" data-id="${taskId}">Save Changes?</button>
-        <button id="cancel-title-changes-btn" data-id="${taskId}">Cancel</button>
-        `);
-        window.scrollTo(300, 500);
-    }
+    const taskId = $(this).data('id');
+    swal({
+        text: 'Enter new title',
+        content: "input",
+        button: {
+            text: "Save Changes",
+            closeModal: false
+        },
+        })
+        .then(name => {
+            swal('Title changed to: ', name);
+            window.scrollTo(300, 500);
+            saveTitleChanges(taskId, name);
+        });
 }
 
-// Save changes button
-function saveTitleChanges() {
-    let newText = $('#title-edit-input').val();
-    const taskId = $(this).data('id');
 
+// Save changes button
+function saveTitleChanges(taskId, name) {
     console.log('taskId', taskId);
     $.ajax({
         type: 'PUT',
         url: `/titleEdit/${taskId}`,
-        data: { newText: newText }
+        data: { newText: name }
     }).then(function(response) {
         console.log(response);
         renderTasks();
-        $('#edit-box').empty();
-        editTimesCliked = 0;
     }).catch(function(error){
         console.log('error: ', error);
     });
-}
-
-// Cancel changes button
-function cancelTitleChanges() {
-    $('#edit-box').empty();
-    editTimesCliked = 0;
 }
 
 // Allows user to change description of submited task.
     // Sends out a PUT request to update list
 function handleEditDescription() {
-    editTimesCliked += 1;
-    if (editTimesCliked <= 1) {
-        let taskId = $(this).data('id');
-        $('#edit-box').append(`
-        <label for="description-edit-input">Enter New Description </label><input id="description-edit-input" type="text" placeholder="Enter new description">
-        <button id="save-description-changes-btn" data-id="${taskId}">Save Changes?</button>
-        <button id="cancel-description-changes-btn" data-id="${taskId}">Cancel</button>
-        `);
-    }
-    window.scrollTo(300, 500);
+    const taskId = $(this).data('id');
+    swal({
+        text: 'Enter new description',
+        content: "input",
+        button: {
+            text: "Save Changes",
+            closeModal: false
+        },
+        })
+        .then(name => {
+            swal('Description changed to: ', name);
+            window.scrollTo(300, 500);
+            saveDescriptionChanges(taskId, name);
+        });
 }
 
 // Save changes button
-function saveDescriptionChanges() {
-    let newText = $('#description-edit-input').val();
-    const taskId = $(this).data('id');
-
+function saveDescriptionChanges(taskId, name) {
     console.log('taskId', taskId);
     $.ajax({
         type: 'PUT',
         url: `/descEdit/${taskId}`,
-        data: { newText: newText }
+        data: { newText: name }
     }).then(function(response) {
         console.log(response);
         renderTasks();
-        $('#edit-box').empty();
-        editTimesCliked = 0;
     }).catch(function(error){
         console.log('error: ', error);
     });
-}
-// Cancel changes button
-function cancelDescriptionChanges() {
-    $('#edit-box').empty();
-    editTimesCliked = 0;
 }
